@@ -10,8 +10,8 @@ ui.run_with(app)
 
 async def create_response(text: ui.textarea):
     video_text = text.value
-    text.value = "soing stuff"
-    asyncio.sleep(2)
+    text.value = "doing stuff..."
+    await asyncio.sleep(2)
     text.value = "Taj you are the king"
     ui.notify("Taj make me kids")
 
@@ -19,8 +19,10 @@ async def create_response(text: ui.textarea):
 
 @ui.page('/')
 def main():
-    ui.label("this is an auto report app")
-    text = ui.textarea(label='Text', placeholder='enter the video text here')
-    ui.button('Click me!', on_click=partial(create_response,text))
+    with ui.row().classes('w-full  h-2/3 justify-center'):
+        with ui.column().classes('w-1/2 items-center'):
+            ui.label("Auto report generator").classes('text-4xl')
+            text = ui.textarea(label='Text', placeholder='Enter the video text here').classes('w-full')
+            ui.button('Click me!', on_click=partial(create_response,text)).classes('self-end')
 
 uvicorn.run(app, host="0.0.0.0")
