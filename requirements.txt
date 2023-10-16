@@ -1,2 +1,2 @@
-nicegui==1.3.13
+nicegui
 python-socketio==5.8.0
